@@ -7,7 +7,7 @@ frameworkVarsion: '3'
 
 provider:
   name: aws
-  profile: saga-dev
+  profile: saga_dev
   runtime: python3.9
 
 functions:
