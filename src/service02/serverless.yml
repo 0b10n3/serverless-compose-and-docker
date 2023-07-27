@@ -1,6 +1,6 @@
 app: scd
 
-service: service01
+service: service02
 
 frameworkVarsion: '3'
 
@@ -11,7 +11,7 @@ provide:
 
 functions:
   meu_primeiro_servico:
-    handler: service01.handler
+    handler: service02.handler
     events:
       - httpApi:
           path: /
