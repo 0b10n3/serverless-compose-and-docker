@@ -1,0 +1,19 @@
+app: scd
+
+service: service01
+
+frameworkVarsion: '3'
+
+
+provide:
+  name: aws
+  runtime: python3.9
+
+functions:
+  meu_primeiro_servico:
+    handler: service01.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+
