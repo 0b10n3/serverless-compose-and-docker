@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "scd"
+version = "0.1.0"
+description = "serverles and docker study"
+authors = ["Saga <silvasmath@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
