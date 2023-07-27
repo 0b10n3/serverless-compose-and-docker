@@ -1,0 +1,7 @@
+services:
+  service01:
+    path: src/service01
+
+  service02:
+    path: src/service02
+
