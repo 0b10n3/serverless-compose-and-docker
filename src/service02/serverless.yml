@@ -5,7 +5,7 @@ service: service02
 frameworkVarsion: '3'
 
 
-provide:
+provider:
   name: aws
   profile: saga-dev
   runtime: python3.9
