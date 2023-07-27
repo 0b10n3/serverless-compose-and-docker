@@ -12,7 +12,7 @@ provider:
 
 functions:
   meu_primeiro_servico:
-    handler: service01.handler
+    handler: service.handler
     events:
       - httpApi:
           path: /
