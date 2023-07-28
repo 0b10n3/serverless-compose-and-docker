@@ -1,32 +1,21 @@
-FROM python:3.10-slim-buster
+FROM archlinux:latest
 
-RUN apt-get update && \
-    apt-get install -y \
-        wget=1.20.1-1.1 \
-        zip=3.0-11+b1 \
-        unzip=6.0-23+deb10u2 \
-        git=1:2.20.1-2+deb10u3 \
-        curl \
-        npm=5.8.0+ds6-4+deb10u2 && \
-    pip3 install --no-cache-dir --upgrade pip==22.1.2 && \
-    npm install npm@latest -g && \
-    npm install -g serverless@3.24.1 && \
-    npm install -g serverless-compose@2.4.0 &&\
-    apt-get -q -y clean && \
-    rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+RUN pacman -Syu --noconfirm
 
-ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
-RUN apt-get install -y nodejs
+RUN pacman -S git curl python3 python-pip --noconfirm
+
+ENV POETRY_HOME="/opt/poetry"
+ENV PATH="$POETRY_HOME/bin:$PATH"
+
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
-WORKDIR /app
+RUN poetry --version
 
+COPY pyproject.toml ./
 
-COPY pyproject.toml poetry.lock ./
+RUN poetry config virtualenvs.create false
 
 RUN poetry install
 
 COPY src/tools ./tools
 
-ENTRYPOINT ["/bin/sh"]
