@@ -2,19 +2,31 @@ app: scd
 
 service: service01
 
-frameworkVarsion: '3'
+frameworkVersion: '3'
 
+
+custom:
+  ecrImage: service01
 
 provider:
   name: aws
   profile: saga_dev
-  runtime: python3.9
+  runtime: python3.11
+  ecr:
+    images:
+      service01:
+        path: ../
+        file: ./docker/Dockerfile
+        buildArgs:
+          SRC_PATH: service01/ 
 
 functions:
   meu_primeiro_servico:
-    handler: service.handler
+    image:
+      name: ${self:custom.ecrImage}
+      command:
+        - service.handler
     events:
       - httpApi:
           path: /
           method: get
-

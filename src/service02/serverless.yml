@@ -2,13 +2,21 @@ app: scd
 
 service: service02
 
-frameworkVarsion: '3'
+frameworkVersion: '3'
 
 
 provider:
   name: aws
   profile: saga_dev
-  runtime: python3.9
+  runtime: python3.11
+  ecr:
+   images:
+    service02:
+      path: ../
+      file: ./docker/Dockerfile
+      buildArgs:
+        SRC_PATH: service02/ 
+
 
 functions:
   meu_primeiro_servico:
