@@ -3,8 +3,6 @@ from tools import my_side_tool
 
 print("Loading function")
 
-print("Loading function ... ")
-
 def handler(event, context):
 
     # Call the function from the side_tools package
