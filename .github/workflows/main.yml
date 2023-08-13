@@ -28,10 +28,11 @@ jobs:
             rm -rf /tmp/aws/
     - name: AWS Configure
       run:  |  
-            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile saga_dev
-            aws configure set ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile saga_dev
-            aws configure set default.region us-east-1 --profile saga_dev
-            aws configure set default.output json --profile saga_dev
+            export AWS_PROFILE=saga_Dev
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws configure set default.region us-east-1
+            aws configure set default.output json
     - name: serverless deploy
       uses: serverless/github-action@v3.2
       with:
