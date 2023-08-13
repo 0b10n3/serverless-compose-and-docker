@@ -19,6 +19,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - name: AWS Install
+      run:  |
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+            unzip -q /tmp/awscliv2.zip -d /tmp
+            rm /tmp/awscliv2.zip
+            sudo /tmp/aws/install --update
+            rm -rf /tmp/aws/
+    - name: AWS Configure
+      run:  |  
+            aws configure --profile saga_dev set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure --profile saga_dev set ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws configure --profile saga_dev set default.region us-east-1
+            aws configure --profile saga_dev set default.output json 
     - name: serverless deploy
       uses: serverless/github-action@v3.2
       with:
