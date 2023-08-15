@@ -35,9 +35,9 @@ jobs:
             aws configure set default.output json
     - name: Profile Check
       run: | 
-           echo $(cat .aws/credentials)
-           echo $(cat .aws/configs)
-           echo "source_profile = saga_dev" >> .aws/credentials
+           echo $(cat ~.aws/credentials)
+           echo $(cat ~.aws/configs)
+           echo "source_profile = saga_dev" >> ~.aws/credentials
     - name: serverless deploy
       uses: serverless/github-action@v3.2
       with:
