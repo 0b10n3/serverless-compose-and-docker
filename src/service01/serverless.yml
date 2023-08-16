@@ -10,7 +10,6 @@ custom:
 
 provider:
   name: aws
-  profile: saga_dev
   runtime: python3.11
   ecr:
     images:
