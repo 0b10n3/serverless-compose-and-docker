@@ -19,6 +19,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - name: Install docker
+      uses: papodaca/install-docker-action@main
     - name: AWS Install
       run:  |
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
