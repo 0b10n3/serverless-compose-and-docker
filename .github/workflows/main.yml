@@ -31,5 +31,6 @@ jobs:
             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws configure set default.region us-east-1
             aws configure set default.output json
+            aws ecr get-login-password^C-region us-east-1 | docker login --username AWS --password-stdin 955243827915.dkr.ecr.us-east-1.amazonaws.com
     - name: Deploy
       run: sls deploy --stage dev --verbose
